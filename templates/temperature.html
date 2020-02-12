@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="formwrapper">
+  <h2 class="title">Temperature Submission</h2>
+  <form method="POST" action="/">
+    <div class="form-field">{{ form.emp_id.label }} {{ form.emp_id(size=20) }}
+      {% if form.emp_id.errors %}
+        <ul class="errors">
+          {% for error in form.emp_id.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <div class="form-field">{{ form.emp_name.label }} {{ form.emp_name }}
+      {% if form.emp_name.errors %}
+        <ul class="errors">
+          {% for error in form.emp_name.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <div class="form-field">{{ form.temperature.label }} {{ form.temperature }}
+      {% if form.temperature.errors %}
+        <ul class="errors">
+          {% for error in form.temperature.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    {{ form.submit }}
+  </form>
+</div>
+{% endblock %}
